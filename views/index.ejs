@@ -1,23 +1,27 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shams' Book Note</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Books read by Shams</h1>
-    <p>Tiny summary but detailed notes for each. Use the ISBN number to find it from your local library or anywhere else. This page will constantly update as I read more, so bookmark it if you want to check back in a few months.</p>
-    <div>
-        <p>Sort by:</p>
-        <select id="sort-dropdown">
-            <option value="title">Title</option>
-            <option value="recency">Latest</option>
-            <option value="rating">Rating</option>
-        </select>
-        <button id="add-book">Add Book</button>
+<%- include('partials/header.ejs'); -%>
+
+    <div class="topBar">
+        <div class="title">
+            <h1>Books read by Shams</h1>
+            <p>Tiny summary but detailed notes for each. Use the ISBN number to find it from your local library or anywhere else. This page will constantly update as I read more, so bookmark it if you want to check back in a few months.</p>
+        </div>
+        
+        <div class="topActions">
+            <div class="sortAction">
+                <p>Sort by:</p>
+                <select id="sort-dropdown">
+                    <option value="title">Title</option>
+                    <option value="recency">Latest</option>
+                    <option value="rating">Rating</option>
+                </select>
+            </div>
+    
+            <form action="/addBook" method="post" class="addBookBtn">
+                <button id="add-book">Add Book</button>
+            </form>
+        </div>
     </div>
-    <br><hr><br>
+
     <% for (let book of shelf) { %>
         <div class="book-item">
             <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" alt="">
@@ -30,5 +34,5 @@
             <button class="edit-book" data-id="<%= book._id %>">Edit</button>
         </div>
     <% } %>
-</body>
-</html>
+
+<%- include('partials/footer.ejs'); -%>

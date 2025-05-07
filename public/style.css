@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 150%;
+}
+
+.topBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #f5f5f5;
+}
+
+.title{
+    padding: 24px 40px;
+    width: 70%;
+}
+
+button{
+    padding: 6px 12px;
+    background-color: teal;
+    color: white;
+    border: none;
+}
+
+.addBook{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 14px;
+    padding: 40px;
+    max-width: 600px;
+}
+
+.buttonGroup{
+    display: flex;
+    gap: 12px;
+    justify-content: end;
+}
+
+.topActions{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 40px;
+}
+
+.sortAction select{
+    padding: 6px;
+    height: auto;
+}
+
+.sortAction{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.button{
+    padding: 6px 12px;
+    background-color: lightgrey;
+    color: black;
+    border: none;
+    text-decoration: none;
+}
+
+input, textarea{
+    padding: 6px;
+    border: 1px solid lightgrey;
+    width: 100%;
+}
+
+.formRow{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+}
+
+.formRow p{
+    width: 20%;
+}
