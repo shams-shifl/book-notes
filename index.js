@@ -19,17 +19,15 @@ app.use(express.static("public"));
 
 async function checkShelf() {
   const result = await db.query("SELECT * FROM bookshelf ORDER BY readAt DESC");
-  // console.log(result.rows);
 
-  let bookshelf = [];
-  result.rows.forEach((book) => {
-    bookshelf.push(book);
-  });
-  
-  // console.log(bookshelf);
+  const bookshelf = result.rows.map((book) => ({
+    ...book, // copy all properties from the book object exactly same
+    readat: book.readat?.toISOString().split('T')[0], // returns 'YYYY-MM-DD'. here we are only updating the readat property
+  }));
 
   return bookshelf;
 }
+
 
 app.get("/", async (req, res) => {
   const shelf = await checkShelf();
