@@ -1,0 +1,42 @@
+<%- include('partials/header.ejs'); -%>
+
+    <form class="addBook" action="/updateBook" method="post">
+        <h1>Edit Book</h1>
+        <input type="hidden" name="editBookID" value="<%= shelf.id %>">
+        <div class="formRow">            
+            <p>Book Title</p>
+            <input type="text" name="title" placeholder="Book Title" value="<%= shelf.title %>" required>
+        </div>
+
+        <div class="formRow">
+            <p>ISBN</p>
+            <input type="text" name="isbn" placeholder="Book ISBN Number" value="<%= shelf.isbn %>" required>
+        </div>
+
+        <div class="formRow">
+            <p>Author Name</p>
+            <input type="text" name="author" placeholder="Book Author" value="<%= shelf.author %>" required>
+        </div>
+        
+        <div class="formRow">
+            <p>Read At</p>
+            <input type="date" name="readat" placeholder="YYYY-MM-DD" value="<%= shelf.readat %>" required>
+        </div>
+
+        <div class="formRow">
+            <p>Rating</p>
+            <input type="number" name="rating" placeholder="Enter rating out of 10" min="1" max="10" value="<%= shelf.rating %>" required>
+        </div>
+        
+        <div class="formRow">
+            <p>Note</p>
+            <textarea name="note" placeholder="Add a note here..."><%= shelf.note %></textarea>
+        </div>
+        
+        <div class="buttonGroup">
+            <a href="/" class="button">Cancel</a>
+            <button type="submit">Update Book</button>
+        </div>
+    </form>
+
+<%- include('partials/footer.ejs'); -%>

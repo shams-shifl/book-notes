@@ -57,6 +57,41 @@ app.post("/newBook", async (req, res) => {
   res.redirect("/");
 });
 
+app.post("/editBook", async (req, res) => {
+  const changeID = req.body.editBookID;
+  console.log(changeID);
+
+  const result = await db.query(
+    "SELECT * FROM bookshelf WHERE id = $1;",
+    [changeID]
+  );
+
+  console.log(result.rows);
+
+  const bookshelf = result.rows.map((book) => ({
+    ...book, // copy all properties from the book object exactly same
+    readat: book.readat?.toISOString().split('T')[0], // returns 'YYYY-MM-DD'. here we are only updating the readat property
+  }));
+
+  console.log(bookshelf);
+  
+  res.render("editBook.ejs", {
+    pageTitle: "Edit Book",
+    shelf: bookshelf[0],
+  });
+});
+
+app.post("/updateBook", async (req, res) => {
+  const changeID = req.body.editBookID;
+  
+  const newBook = await db.query(
+    "UPDATE bookshelf SET title = $1, isbn = $2, author = $3, readat = $4, rating = $5, note = $6 WHERE id = $7 RETURNING *",
+    [req.body.title, req.body.isbn, req.body.author, req.body.readat, req.body.rating, req.body.note, changeID]
+  );
+
+  res.redirect("/");
+});
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
