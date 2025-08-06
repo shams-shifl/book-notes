@@ -10,11 +10,13 @@
             <div class="topActions">
                 <div class="sortAction">
                     <p>Sort by:</p>
-                    <select id="sort-dropdown">
-                        <option value="recency">Latest</option>
-                        <option value="title">Title</option>
-                        <option value="rating">Rating</option>
-                    </select>
+                    <form action="/" method="get">
+                        <select id="sort-dropdown" onchange="this.form.submit()" name="sort">
+                            <option value="readAt" <%= (sortType === 'readAt') ? 'selected' : '' %>>Latest</option>
+                            <option value="title" <%= (sortType === 'title') ? 'selected' : '' %>>Title</option>
+                            <option value="rating" <%= (sortType === 'rating') ? 'selected' : '' %>>Rating</option>
+                        </select>
+                    </form>
                 </div>
         
                 <form action="/addBook" method="post" class="addBookBtn">

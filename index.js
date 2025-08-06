@@ -4,6 +4,8 @@ import pg from "pg";
 
 const app = express();
 const port = 3000;
+let sortType;
+let sortOrder; // Default sort order
 
 const db = new pg.Client({
   user: "postgres",
@@ -17,8 +19,8 @@ db.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-async function checkShelf() {
-  const result = await db.query("SELECT * FROM bookshelf ORDER BY readAt DESC");
+async function checkShelf(sortType, sortOrder) {
+  const result = await db.query(`SELECT * FROM bookshelf ORDER BY ${sortType} ${sortOrder}`);
 
   const bookshelf = result.rows.map((book) => ({
     ...book, // copy all properties from the book object exactly same
@@ -30,13 +32,23 @@ async function checkShelf() {
 
 
 app.get("/", async (req, res) => {
-  const shelf = await checkShelf();
+  sortType = req.query.sort || 'readAt'; // Default sort by is readAt
+
+  if (sortType === 'title') {
+    sortOrder = 'ASC'; // Sort by title in ascending order
+  } else{
+    sortOrder = 'DESC'; // Default sort order is descending
+  }
+
+  const shelf = await checkShelf(sortType, sortOrder);
 
   // console.log(shelf);
 
   res.render("index.ejs", {
     shelf: shelf,
     pageTitle: "My Book Shelf",
+    sortType: sortType,
+    sortOrder: sortOrder,
   });
 });
 
