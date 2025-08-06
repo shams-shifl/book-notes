@@ -92,6 +92,16 @@ app.post("/updateBook", async (req, res) => {
   res.redirect("/");
 });
 
+app.post("/deleteBook", async (req, res) => {
+  const id = req.body.deleteBookID;
+  try {
+    await db.query("DELETE FROM bookshelf WHERE id = $1", [id]);
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });

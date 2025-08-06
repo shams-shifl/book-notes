@@ -10,14 +10,14 @@ body{
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 }
 
 main{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     max-width: 960px;
     gap: 20px;
 }
@@ -81,6 +81,7 @@ button{
     justify-content: center;
     gap: 20px;
     margin: 0 auto;
+    padding-bottom: 32px;
 }
 
 .book-item{
@@ -118,6 +119,26 @@ button{
     color: teal;
     border: 1px solid lightgrey;
     height: 32px;
+}
+
+.book-item .deleteBookForm button{
+    background-color: red!important;
+    color: white;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.book-item .deleteBookForm button img{
+    width: 16px;
+    height: 16px;
+}
+
+.book-item .deleteBookForm{
+    margin: 0;
 }
 
 /* Add Book Form related styles */

@@ -38,6 +38,10 @@
                                 <input type="hidden" name="editBookID" value="<%= book.id %>">
                                 <button class="edit-book" type="submit">Edit</button>
                             </form>
+                            <form action="/deleteBook" method="post" class="deleteBookForm">
+                                <input type="hidden" name="deleteBookID" value="<%= book.id %>">
+                                <button class="delete-book" type="submit"><img src="ic-delete.svg" alt="delete button"></button>
+                            </form>
                         </div>
                         <p class="note"><strong>Notes:</strong> <%= book.note %></p>
                     </div>
